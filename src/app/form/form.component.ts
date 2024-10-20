@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { PaginatorModule } from 'primeng/paginator';
 import { Button } from 'primeng/button';
+import { TableService } from '../table/table.service';
 
 @Component({
     selector: 'app-form',
@@ -11,4 +12,15 @@ import { Button } from 'primeng/button';
 })
 export class FormComponent {
     enteredValue: number = 0;
+
+    tableService = inject(TableService);
+
+    onClick() {
+        this.tableService.setQuantity(this.enteredValue);
+        this.clearInput();
+    }
+
+    clearInput() {
+        this.enteredValue = 0;
+    }
 }
